@@ -37,3 +37,14 @@ app
     if (err) throw err
     console.log(`App Listening on Port ${port}`)
   })
+
+/**
+ * GET /search
+ * Search for a term in the library
+ */
+router.get('/search', async (ctx, next) => {
+    const { term, offset } = ctx.request.query
+    ctx.body = await search.queryTerm(term, offset)
+  }
+)
+
