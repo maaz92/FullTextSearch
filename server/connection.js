@@ -31,3 +31,15 @@ async function resetIndex () {
   await client.indices.create({ index })
   await putBookMapping()
 }
+
+/** Add book section schema mapping to ES */
+async function putBookMapping () {
+  const schema = {
+    title: { type: 'keyword' },
+    author: { type: 'keyword' },
+    location: { type: 'integer' },
+    text: { type: 'text' }
+  }
+
+  return client.indices.putMapping({ index, type, body: { properties: schema } })
+}
