@@ -22,3 +22,12 @@ async function checkConnection () {
   }
 }
 
+/** Clear the index, recreate it, and add mappings */
+async function resetIndex () {
+  if (await client.indices.exists({ index })) {
+    await client.indices.delete({ index })
+  }
+
+  await client.indices.create({ index })
+  await putBookMapping()
+}
