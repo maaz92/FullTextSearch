@@ -43,3 +43,7 @@ async function putBookMapping () {
 
   return client.indices.putMapping({ index, type, body: { properties: schema } })
 }
+
+module.exports = {
+  client, index, type, checkConnection, resetIndex
+}
